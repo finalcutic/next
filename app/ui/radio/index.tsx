@@ -6,12 +6,17 @@ interface CommonRadioProps {
   children: React.ReactNode
 }
 
-export const RadioGroup: React.FC<CommonRadioProps &{selected : string}> = ({ onChange, selected, children }) => {
+interface RadioOptionChildProps extends CommonRadioProps {
+  value: string;
+  checked: boolean
+}
+
+export const RadioGroup: React.FC<RadioOptionChildProps &{selected : string}> = ({ onChange, selected, children }) => {
   // Use React.Children.map and React.cloneElement to clone the children
   // and pass the correct props to each RadioOption
   const RadioOptions= React.Children.map(children, (child) => {
-    const radioElement = child as ReactElement<CommonRadioProps>;
-   return React.cloneElement(child, {checked : radioElement.props.value === selected, onChange} )
+    const radioElement = child as React.ReactElement<RadioOptionChildProps>;
+   return React.cloneElement(radioElement, {checked : radioElement.props.value === selected, onChange} )
   })
 
   return <div className="RadioGroup">{RadioOptions}</div>;
@@ -19,7 +24,6 @@ export const RadioGroup: React.FC<CommonRadioProps &{selected : string}> = ({ on
 
 interface RadioOptionProps extends CommonRadioProps {
   checked?: boolean;
-  children: React.ReactNode;
   value: string
 }
 
@@ -27,7 +31,7 @@ export const RadioOption: React.FC<RadioOptionProps> = ({ value, checked = false
   // Hook up the onChange handler to call the onChange prop passed to RadioGroup
   // Also, make sure to pass the correct checked prop to the input element
 
-  const handleChange = (event) => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newValueSelected = event.target.id
     console.log(newValueSelected)
     onChange(newValueSelected)
