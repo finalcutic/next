@@ -229,12 +229,3 @@ export async function getUser(email: string) {
     throw new Error('Failed to fetch user.');
   }
 }
-
-const UserSchema = z.object(
-  {
-    id: z.number(),
-    name: z.string()
-  }
-)
-
-const useSchema = ()
