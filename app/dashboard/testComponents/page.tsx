@@ -50,7 +50,7 @@ export default function Page() {
               <span className="pointer-events-none inset-y-0 right-0 ml-3 flex items-center pr-0 pl-1">
                 {isListOpen?<ChevronUpDownIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
                  :<ChevronDownIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
-                }curcccdsdcdsvfvdfvfdv dcdsvsdvfvfvdfd
+                }
               </span>
         </div>
         <ul className={classNames(!isListOpen ? " hidden ":"rounded-md bg-slate-50 px-2 py-2 w-96 mt-2 border shadow-lg ring-1 ring-black ring-opacity-5")}>
