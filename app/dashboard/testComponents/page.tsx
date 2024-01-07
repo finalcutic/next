@@ -2,6 +2,7 @@
 
 import { ChevronUpDownIcon, ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/20/solid";
 import { ChangeEvent, useEffect, useState } from "react"
+import { GreyButton, RedButton } from "./Button";
 
 /** 
 @param cssclasses
@@ -16,7 +17,7 @@ export default function Page() {
    const [selectedItems, setSelectedItems] = useState([data[0]])
    const [isListOpen, setIsListOpen] = useState(false)
 
-   function handleCheck(event: ChangeEvent<HTMLInputElement>, selectedItem: string){
+   function handleCheck(event: MouseEvent, selectedItem: string){
 
     event.stopPropagation()
     console.log(event.currentTarget)
@@ -29,7 +30,7 @@ export default function Page() {
     }
   }
 
-    function handleClose(e: MouseEvent<HTMLButtonElement, MouseEvent>){
+    function handleClose(e: MouseEvent){
       setSelectedItems(selectedItems.filter(item => item !== e.target.id))
     }
     
@@ -63,6 +64,13 @@ export default function Page() {
           }
         </ul>
       </div>
+      <br></br>
+      <h2>Blue button component:</h2>
+      <GreyButton/>
+      <br></br>
+      <h2>Red button component:</h2>
+      <RedButton/>
+      
     </>
 
   )
