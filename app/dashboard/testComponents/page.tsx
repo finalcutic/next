@@ -17,7 +17,7 @@ export default function Page() {
    const [selectedItems, setSelectedItems] = useState([data[0]])
    const [isListOpen, setIsListOpen] = useState(false)
 
-   function handleCheck(event: MouseEvent, selectedItem: string){
+   function handleCheck(event: React.MouseEvent, selectedItem: string){
 
     event.stopPropagation()
     console.log(event.currentTarget)
@@ -30,9 +30,15 @@ export default function Page() {
     }
   }
 
-    function handleClose(e: MouseEvent){
-      setSelectedItems(selectedItems.filter(item => item !== e.target.id))
+  function handleClose(e: React.MouseEvent<HTMLButtonElement>) {
+    const targetId = e.currentTarget.id
+  
+    if (targetId) {
+      setSelectedItems((prevItems) =>
+        prevItems.filter((item) => item !== targetId.toString())
+      );
     }
+  }
     
    
   return (
